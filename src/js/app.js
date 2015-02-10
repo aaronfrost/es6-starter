@@ -1,8 +1,7 @@
 /*
-  Variable Hoisting
-  LET
-  CONST
-  Block Functions
+ Splat
+ VARARGS
+ params
  */
 
 
@@ -27,195 +26,13 @@
 
 
 
- //BASIC LET
-let a = 1;
 
+//Triple dots in Method signature
+//console.clear();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// REAssign It
-//let b = 2;
-//b = 3;
-//console.log('b',b);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//IF scope
-//let c = 2;
-//if(true){
-//  let bar = 1;
-//}
-//console.log( c + bar ); //ERROR
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//Same Name, Nested Scope: OK
-//let d = 0;
-//if(true){
-//  let d = 2;
-//  console.log("here d = ",d);     //Logs 2
-//}
-//console.log("at the end d = ",d); //Logs 0
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//Same Name, Same Scope: OK
-//let d = 0;
-//let d = 2;  //Works in 6to5, but not legal in ES6 spec
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//LET SCOPES
-
-//let a = 0;      //BASIC
-//
-//if(true){       //IF
-//  let b = 1;
-//}
-//
-//let term = "js";
-//switch(term){   //SWITCH
-//  case "js":
-//    let c = 2;
-//    break;
-//}
-//
-//while(true){    //LOOP BODY
-//  let d = 0;
-//}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//TEMPORAL DEAD ZONE
-function doSomething(){
-  console.log(a);  //What Here?
-  let a = 1;
-  console.log(a);
+function myFunction(first, last, ...other){
+  //code
 }
-//Memory is reserved
-//But variable isn't accessible
-//6to5 allows for it, but ES6 doesn't
 
 
 
@@ -237,40 +54,139 @@ function doSomething(){
 
 
 
-//LET AS COUNTER
 
-////VAR I
-//for(var i = 0; i < 10; i++){
-//  //console.log(i); //Logs 0-9
+
+
+
+//This is how you use it
+//console.clear();
+
+//function foo(...bar){
+//  console.log(bar.join(' ')); //Logs 'I can haz teh arguments'
 //}
+//foo('I', 'can', 'haz', 'teh', 'arguments');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//WHO CARES!!? We already had 'arguments'
+//console.clear();
+
+//function foo(){
+//  console.log(Array.prototype.join.call(arguments,' ')); //Logs 'I can haz teh arguments'
+//}
+//foo('I', 'can', 'haz', 'teh', 'arguments');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//DIFFERENCES
+//console.clear();
+//function argumenty(name){
+//  console.log(name, arguments); //arguments includes 'name' argument as well
+//}
+//function resty(name, ...other){ //other doesn't include 'name', only includes remaining arguments
+//  console.log(name, other);
+//}
+//argumenty("Aaron", "Frost", "Salt Lake City", "Utah");
+//resty("Aaron", "Frost", "Salt Lake City", "Utah");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//RULES
+/*
+  - One per function
+  - Must be the last parameter
+  - Can't use 'arguments'
+  - No Default Values
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//ONE PER FUNCTION
+//console.clear();
 //
-////LET J
-//for(let j = 0; j < 10; j++){
-//  //console.log(j); //Logs 0-9
+//function lotsOArgs(...first, ...second){
+//  console.log("FIRST: " + first.join(" "));
+//  console.log("SECOND: " + second.join(" "));
 //}
-//console.log(i); //Logs 10
-//console.log(j); //ReferenceError
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//CONST
-//const e = 0;
-//e = 1;  //SyntaxError: Assignment to constant variable
-// 6to5 won't even compile this
+//lotsOArgs("where", "does", "first", "stop", "and", "second", "begin");
+// SyntaxError: Multiple RestParams Defined
+// In 6to5, you get a compile error
 
 
 
@@ -291,20 +207,72 @@ function doSomething(){
 
 
 
-
-
-
-
-
-
-//BLOCKS
-//{
-//  let something = "another thing";
-//  console.log('inblock',something);
+//MUST BE LAST PARAM
+//console.clear();
+//
+//function doSomething(...bar, biz){
+//  // your code
 //}
-//console.log('outblock',something);
+//doSomething(1, 2, 3, 4); //Where does it cutoff for 'biz'
+//doSomething(1);  //Does 1 go in 'bar' or 'biz'
 
-//arbitrary block
-//Been in JS for a long time, but no one cared until LET and CONST
+// SyntaxError
+// 6to5 compiler error
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//CAN'T USE 'arguments'
+//console.clear();
+//
+//function doSomething(...bar){
+//  console.log(arguments.length); // SyntaxError
+//}
+//doSomething(1, 2, 3);
+
+//THIS WORKS IN 6to5
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//NO DEFAULT VALUES
+//console.clear();
+//
+//function doSomething(...params=[1,2,3]){ //SyntaxError
+//  console.log(params.join(“ “));
+//}
+//doSomething();
+
+// In 6to5, it is a compiler error
