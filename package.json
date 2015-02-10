@@ -1,0 +1,14 @@
+{
+  "name": "js-remote-conf-es6",
+  "version": "0.0.1",
+  "devDependencies": {
+    "6to5": "^2.13.7",
+    "6to5-loader": "^2.0.0",
+    "exports-loader": "^0.6.2",
+    "file-loader": "^0.8.1",
+    "imports-loader": "^0.6.3",
+    "json-loader": "~0.5.1",
+    "webpack": "^1.5.3"
+  },
+  "dependencies": {}
+}
