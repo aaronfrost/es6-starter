@@ -1,12 +1,12 @@
-/*
- Splat
- VARARGS
- params
- */
 
 
 
 
+//QUICK LESSON
+//let nums = [1, 2, 3];
+//
+//console.log(nums);    //logs [1, 2, 3], and Array
+//console.log(...nums); //logs 1, 2, 3, the individual pieces, all spread out
 
 
 
@@ -27,166 +27,17 @@
 
 
 
-//Triple dots in Method signature
-//console.clear();
-
-function myFunction(first, last, ...other){
-  //code
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//This is how you use it
-//console.clear();
-
-//function foo(...bar){
-//  console.log(bar.join(' ')); //Logs 'I can haz teh arguments'
-//}
-//foo('I', 'can', 'haz', 'teh', 'arguments');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//WHO CARES!!? We already had 'arguments'
-//console.clear();
-
-//function foo(){
-//  console.log(Array.prototype.join.call(arguments,' ')); //Logs 'I can haz teh arguments'
-//}
-//foo('I', 'can', 'haz', 'teh', 'arguments');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//DIFFERENCES
-//console.clear();
-//function argumenty(name){
-//  console.log(name, arguments); //arguments includes 'name' argument as well
-//}
-//function resty(name, ...other){ //other doesn't include 'name', only includes remaining arguments
-//  console.log(name, other);
-//}
-//argumenty("Aaron", "Frost", "Salt Lake City", "Utah");
-//resty("Aaron", "Frost", "Salt Lake City", "Utah");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//RULES
-/*
-  - One per function
-  - Must be the last parameter
-  - Can't use 'arguments'
-  - No Default Values
- */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//ONE PER FUNCTION
+//Old vs New
 //console.clear();
 //
-//function lotsOArgs(...first, ...second){
-//  console.log("FIRST: " + first.join(" "));
-//  console.log("SECOND: " + second.join(" "));
+//function returnTwo(a,b){
+//  return [b,a]; //Flips 'a' and 'b'
 //}
-//lotsOArgs("where", "does", "first", "stop", "and", "second", "begin");
-// SyntaxError: Multiple RestParams Defined
-// In 6to5, you get a compile error
+//var a = [1, 2, 3];
+//var b = returnTwo(a[0], a[1]); // [2, 1]
+//var c = returnTwo(...a); // [2, 1]
+//console.log(b);
+//console.log(c);
 
 
 
@@ -206,18 +57,16 @@ function myFunction(first, last, ...other){
 
 
 
+//WHAT CAN I DO w/ Spread?
 
-//MUST BE LAST PARAM
+//Combine Arrays
 //console.clear();
 //
-//function doSomething(...bar, biz){
-//  // your code
-//}
-//doSomething(1, 2, 3, 4); //Where does it cutoff for 'biz'
-//doSomething(1);  //Does 1 go in 'bar' or 'biz'
-
-// SyntaxError
-// 6to5 compiler error
+//let nums = [1, 2, 3];
+//let abcs = ['a', 'b', 'c'];
+//
+//let alphanum = [ ...nums, ...abcs ]; //[1, 2, 3, 'a', 'b', 'c']
+//console.log(alphanum);
 
 
 
@@ -237,42 +86,16 @@ function myFunction(first, last, ...other){
 
 
 
-//CAN'T USE 'arguments'
+
+//WHAT CAN I DO w/ Spread?
+
+//Combine Arrays
 //console.clear();
 //
-//function doSomething(...bar){
-//  console.log(arguments.length); // SyntaxError
+//function getNums(){
+//  return [1, 2, 3];
 //}
-//doSomething(1, 2, 3);
-
-//THIS WORKS IN 6to5
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//NO DEFAULT VALUES
-//console.clear();
 //
-//function doSomething(...params=[1,2,3]){ //SyntaxError
-//  console.log(params.join(“ “));
-//}
-//doSomething();
+//var b = [0, ...getNums()];
+//console.log(b); // [0, 1, 2, 3]
 
-// In 6to5, it is a compiler error
