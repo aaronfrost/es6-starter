@@ -1,15 +1,40 @@
-//ARROW FUNCTIONS
+//DEFAULT PARAMS
+//
+// People call them
+/*
+ Default Arguments
+ Default Values
+ Default Function Arguments
+ Default Optional Parameters
+ some other variation of this
+ */
+/*
+  Existed in other languages for a while
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//DEFAULT PARAMS
 //console.clear();
 //
-////Basics
-//let fn1 = function(){return 2;};
-//let fn2 = () => 2;
-//
-//console.log(fn1, fn2);
-
-// - No 'function'
-// - No 'return'
-// - No curly braces
+//// In the past
+//function test(a) {
+//  a = a || getSomeDefaultValue(); //DATAPROOFING
+//  //Your code
+//}
 
 
 
@@ -27,54 +52,27 @@
 
 
 
-//ARROW FUNCTIONS
-//console.clear();
-
-////Basics
-//let fn1 = function(){return 2;};
-//let fn2 = () => 2;
-//
-//console.log(fn1, fn2);
-
-// - No 'function'
-// - No 'return' (sometimes)
-// - No curly braces
-// - Parens for parameters
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-//ARROW FUNCTIONS
+//DEFAULT PARAMS
 //console.clear();
 //
-////Parameters
-//let x;
-//x = () => {};     //No parameters, MUST HAVE PARENS
-//x = (val) => {};  //One parameter w/ parens, OPTIONAL
-//x = val => {};    //One parameter w/o parens, OPTIONAL
-//x = (y, z) => {}; //Two or more parameters, MUST HAVE PARENS
-//x = y, z => {};   //Syntax Error: must wrap with parens when using multiple params
-//console.log(x);
-
-// - Questions?
-
-
-
-
-
+//// A few examples
+//function sayHello(name = "World"){
+//  console.log("Hello " + name + "!");
+//}
+//
+//sayHello("Dt Dew"); //Hello Dt Dew!
+//sayHello(""); //Hello !
+//sayHello(); //Hello World!
+//sayHello(undefined);//Hello World!
+//
+//// - Empty string doesn't trigger default assignment event
+//// - Only null and undefined do
+//// - Explicit undefined trigger default assignment
 
 
 
@@ -87,14 +85,76 @@
 
 
 
-//ARROW FUNCTIONS
+
+
+////DEFAULT PARAMS
 //console.clear();
 //
-////Method body declaration
-//let square;
-//square = (x) => x * x; //Body w/o braces
-//square = x => { return x * x}; //Body w/ braces
-//console.log(square);
+//// A few examples
+//function getRand(){
+//  return Math.ceil(Math.random() * 10000000) + new Date().getTime();
+//}
+//
+//function myFunction(id=getRand()){
+//  console.log("My ID: "+id);
+//}
+//
+//myFunction(); //Logs random number
+//myFunction(1); //Logs 1
+//
+//// - Questions?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////DEFAULT PARAMS
+//console.clear();
+//
+//// Throwing in the assignment throws in your method
+//function die(){ throw "I threw here because... "}
+//
+//function test(a = die()){
+//  console.log("Didn't die");
+//}
+//
+//test(); // throws an error
+//
+//// - Questions?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////DEFAULT PARAMS
+//console.clear();
+//
+//// Not all params need defaults
+//
+//function test(a = 1, b){ //This is OK
+//  //Your Code
+//}
 //
 //// - Questions?
 
@@ -117,14 +177,14 @@
 
 
 
-//ARROW FUNCTIONS
+////DEFAULT PARAMS
 //console.clear();
 //
-////Instead of anonymous functions
-//let nums = [1, 2, 3];
-//let res = nums.map( n => n * n );
-//console.log(res); //Logs [1, 4, 9]
+//// GOTCHA: No default params with rest parameters
 //
+//function f ( ...rest=100 ) { //SyntaxError
+//  //Your Code
+//}
 //// - Questions?
 
 
@@ -147,106 +207,26 @@
 
 
 
-//ARROW FUNCTIONS
+////DEFAULT PARAMS
 //console.clear();
 //
-////The REAL benefit
-//var Widget = {
-//  init: function() {
-//    document.addEventListener("click", function(event) {
-//      this.doSomething(event.type); // Why does this error?
-//    }, false);
-//  },
+//// GOTCHA: Not included in 'arguments'
 //
-//  doSomething: function(type) {
-//    console.log("Handling " + type  + " event");
-//  }
-//};
-//Widget.init();
-//// - Why does that error?
-//// - What if we change the click handler to an arrow function
-//// - Or use 'let me = this'
-
-
-
-
-
-
-
-
-
-
-
-//ARROW FUNCTIONS
-//console.clear();
+//function test (a = 1, b = 2, c = 3){
+//  console.log(arguments.length, [a, b, c]);
+//}
 //
-////The REAL benefit
-//var Widget = {
-//  init: function() {
-//    document.addEventListener("click", function(event) {
-//      this.doSomething(event.type); // Why does this error?
-//    }, false);
-//  },
+//test(); // 0
+//test(1); // 1
+//test(1,2,3,4,5); // 5
 //
-//  doSomething: function(type) {
-//    console.log("Handling " + type  + " event");
-//  }
-//};
-//Widget.init();
-//// - Why does that error?
-//// - What if we change the click handler to an arrow function
-//// - Or use 'let me = this'
-//// - arrow functions bind to the 'this' that existed when they were declared, not executed
+//// - Questions?
 
 
 
 
 
 
-
-
-
-
-//ARROW FUNCTIONS
-//console.clear();
-//
-////Other things to note
-//console.log( typeof ()=>{} );  //'function', weird
-//
-////Not a class function
-//var Foo = function(){};
-//var Bar = () => {};
-//new Foo();
-//new Bar(); //Bar is not a contructor
-//
-//// - It doesn't have the prototype, so it can't be used as a constructor function
-//// - 6to5 allows this, but it shouldn't
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//ARROW FUNCTIONS
-//console.clear();
-//
-////Can't alter 'this', so no .call or .apply
-//
-//let x = () => { console.log(this)};
-//x.call({a: 1});
-//
-//// - It doesn't have the prototype, so it can't be used as a constructor function
-//// - 6to5 allows this, but it shouldn't
 
 
 
