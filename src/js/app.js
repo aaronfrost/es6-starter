@@ -1,16 +1,8 @@
-//DEFAULT PARAMS
-//
-// People call them
-/*
- Default Arguments
- Default Values
- Default Function Arguments
- Default Optional Parameters
- some other variation of this
- */
-/*
-  Existed in other languages for a while
- */
+//CLASSES
+
+// Almost didn't make it into ES6
+
+// https://mail.mozilla.org/pipermail/es-discuss/2012-March/021430.html
 
 
 
@@ -27,14 +19,30 @@
 
 
 
-//DEFAULT PARAMS
+
+
+
+
+
+
+
+
+////CLASSES
 //console.clear();
 //
-//// In the past
-//function test(a) {
-//  a = a || getSomeDefaultValue(); //DATAPROOFING
-//  //Your code
+//// CURRENTLY these are the same
+//
+////FUNCTIONALLY SAME
+//function Foo(){
+//  //....
 //}
+//
+//class Foo{
+//  //....
+//}
+//
+//// - This could change at any time
+//// - As classes are enhanced, THIS WILL CHANGE
 
 
 
@@ -49,30 +57,22 @@
 
 
 
-
-
-
-
-
-
-
-
-//DEFAULT PARAMS
+////CLASSES
 //console.clear();
 //
-//// A few examples
-//function sayHello(name = "World"){
-//  console.log("Hello " + name + "!");
+//// Constructor
+//
+//class Animal{
+//
+//  constructor(name){
+//    this.name = name;
+//  }
+//
 //}
 //
-//sayHello("Dt Dew"); //Hello Dt Dew!
-//sayHello(""); //Hello !
-//sayHello(); //Hello World!
-//sayHello(undefined);//Hello World!
+//console.log(new Animal('Prophetic Narwhal'));
 //
-//// - Empty string doesn't trigger default assignment event
-//// - Only null and undefined do
-//// - Explicit undefined trigger default assignment
+//// - the constructor function is called 'constructor'
 
 
 
@@ -87,22 +87,23 @@
 
 
 
-////DEFAULT PARAMS
+////CLASSES
 //console.clear();
 //
-//// A few examples
-//function getRand(){
-//  return Math.ceil(Math.random() * 10000000) + new Date().getTime();
+//// Private-ish Properties
+//
+//const monsterHealth = Symbol();
+//
+//class Monster{
+//  constructor(name, health){
+//    this.name = name;
+//    this[monsterHealth] = health;
+//  }
 //}
 //
-//function myFunction(id=getRand()){
-//  console.log("My ID: "+id);
-//}
+//console.log(new Monster('Gozilla', 100));
 //
-//myFunction(); //Logs random number
-//myFunction(1); //Logs 1
-//
-//// - Questions?
+//// - See the Symbols spec
 
 
 
@@ -116,20 +117,27 @@
 
 
 
-
-////DEFAULT PARAMS
+////CLASSES
 //console.clear();
 //
-//// Throwing in the assignment throws in your method
-//function die(){ throw "I threw here because... "}
+//// Get Properties
 //
-//function test(a = die()){
-//  console.log("Didn't die");
+//const monsterHealth = Symbol();
+//
+//class Monster{
+//  constructor(name, health){
+//    this.name = name;
+//    this[monsterHealth] = health;
+//  }
+//
+//  get isAlive(){
+//    return this[monsterHealth] > 0;
+//  }
 //}
 //
-//test(); // throws an error
+//console.log('alive - ',new Monster('Gozilla', 100).isAlive);
 //
-//// - Questions?
+//// - properties are not functions
 
 
 
@@ -139,24 +147,35 @@
 
 
 
-
-
-
-
-
-
-
-
-////DEFAULT PARAMS
+////CLASSES
 //console.clear();
 //
-//// Not all params need defaults
+//// Property Methods
 //
-//function test(a = 1, b){ //This is OK
-//  //Your Code
+//const monsterHealth = Symbol();
+//
+//class Monster{
+//  constructor(name, health){
+//    this.name = name;
+//    this[monsterHealth] = health;
+//  }
+//
+//  get isAlive(){
+//    return this[monsterHealth] > 0;
+//  }
+//  set health(val){
+//    if(val < 0){
+//      throw new Error('Health must be positive number');
+//    }
+//    this[monsterHealth] = val;
+//  }
 //}
+//let m = new Monster('Gozilla', 100);
+//m.health = 1000;
 //
-//// - Questions?
+//console.log(m);
+//
+//// - properties are not functions
 
 
 
@@ -177,15 +196,51 @@
 
 
 
-////DEFAULT PARAMS
+
+
+
+
+
+
+
+
+
+
+
+////CLASSES
 //console.clear();
 //
-//// GOTCHA: No default params with rest parameters
+//// Class Methods
 //
-//function f ( ...rest=100 ) { //SyntaxError
-//  //Your Code
+//const monsterHealth = Symbol();
+//
+//class Monster{
+//  constructor(name, health){
+//    this.name = name;
+//    this[monsterHealth] = health;
+//  }
+//
+//  get isAlive(){
+//    return this[monsterHealth] > 0;
+//  }
+//  set health(val){
+//    if(val < 0){
+//      throw new Error('Health must be positive number');
+//    }
+//    this[monsterHealth] = val;
+//  }
+//
+//  attack(target){
+//    console.log(this.name + ' attacks ' + target.name);
+//  }
 //}
-//// - Questions?
+//let m = new Monster('Gozilla', 100);
+//let g = new Monster('Goku', 200);
+//
+//m.attack(g);
+//
+//
+//// - properties are not functions
 
 
 
@@ -207,23 +262,199 @@
 
 
 
-////DEFAULT PARAMS
+
+
+
+
+
+////CLASSES
 //console.clear();
 //
-//// GOTCHA: Not included in 'arguments'
+//// Class Properties
 //
-//function test (a = 1, b = 2, c = 3){
-//  console.log(arguments.length, [a, b, c]);
+//const monsterHealth = Symbol();
+//
+//class Monster{
+//  constructor(name, health){
+//    this.name = name;
+//    this[monsterHealth] = health;
+//    Monster.allMonsters = Monster.allMonsters || [];
+//    Monster.allMonsters.push(this);
+//  }
+//
+//  get isAlive(){
+//    return this[monsterHealth] > 0;
+//  }
+//  set health(val){
+//    if(val < 0){
+//      throw new Error('Health must be positive number');
+//    }
+//    this[monsterHealth] = val;
+//  }
+//
+//  attack(target){
+//    console.log(this.name + ' attacks ' + target.name);
+//  }
 //}
 //
-//test(); // 0
-//test(1); // 1
-//test(1,2,3,4,5); // 5
+//Monster.allMonsters = [];
 //
-//// - Questions?
+//let m = new Monster('Gozilla', 100);
+//let g = new Monster('Goku', 200);
+//
+//console.log(Monster.allMonsters);
+//
+//// - These are like static properties on a class
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////CLASSES
+//console.clear();
+//
+//// EXTENDING CLASSES
+//const monsterHealth = Symbol();
+//class Monster{
+//  constructor(name, health){
+//    this.name = name;
+//    this[monsterHealth] = health;
+//    Monster.allMonsters = Monster.allMonsters || [];
+//    Monster.allMonsters.push(this);
+//  }
+//
+//  get isAlive(){
+//    return this[monsterHealth] > 0;
+//  }
+//  set health(val){
+//    if(val < 0){
+//      throw new Error('Health must be positive number');
+//    }
+//    this[monsterHealth] = val;
+//  }
+//
+//  attack(target){
+//    console.log(this.name + ' attacks ' + target.name);
+//  }
+//}
+//Monster.allMonsters = [];
+//
+//class Godzilla extends Monster{
+//  constructor(){
+//    super('Godzilla', 10000);
+//  }
+//  attack(target){
+//    super(target);
+//  }
+//}
+//
+//let m = new Godzilla();
+//let g = new Monster('Goku', 200);
+//
+//m.attack(g);
+//console.log(Monster.allMonsters);
+//
+//// - super calls
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////CLASSES
+//console.clear();
+//
+//// EXTENDING CLASSES via Expression
+//class MySocket extends getClass() {
+//  //....
+//}
+//
+//function getClass(){
+//  if(isIE()){
+//    return IEWebSocketImpl;
+//  }
+//  return WebSocket;
+//
+//  function isIE(){
+//    return false;
+//  }
+//}
+
+// - The extension reference can be a call
+
+
+
+
+
+
+
+
+
+
+////CLASSES
+//console.clear();
+//
+//// Classes Do Not Hoist
+//new Bar(); //runtime error
+//
+//class Bar{}
+//
+//// - Can't use until evaled in order
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////CLASSES
+//console.clear();
+//
+//// If No Constructor
+//constructor(..args){
+//  super(...args);
+//}
+//// - Can't use until evaled in order
 
 
 
