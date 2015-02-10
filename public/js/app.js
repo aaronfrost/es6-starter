@@ -4,15 +4,13 @@ webpackJsonp([0,1],[
 
 	"use strict";
 
-	//CLASSES
+	//THREE NEW COLLECTION TYPES
 
-	// Almost didn't make it into ES6
-
-	// https://mail.mozilla.org/pipermail/es-discuss/2012-March/021430.html
-
-
-
-
+	/*
+	 - SET
+	 - MAP
+	 - WEAKMAP
+	 */
 
 
 
@@ -33,22 +31,18 @@ webpackJsonp([0,1],[
 
 
 
-	////CLASSES
+
+
+	//// SET
 	//console.clear();
 	//
-	//// CURRENTLY these are the same
+	////Basic
+	//let set = new Set();
+	//set.add(1);
+	//set.add(2);
+	//set.add(3);
+	//console.log(set.size); //logs 3
 	//
-	////FUNCTIONALLY SAME
-	//function Foo(){
-	//  //....
-	//}
-	//
-	//class Foo{
-	//  //....
-	//}
-	//
-	//// - This could change at any time
-	//// - As classes are enhanced, THIS WILL CHANGE
 
 
 
@@ -63,22 +57,23 @@ webpackJsonp([0,1],[
 
 
 
-	////CLASSES
+
+
+
+
+
+
+	//// SET
 	//console.clear();
 	//
-	//// Constructor
+	//// Unique Values
+	//let set = new Set();
+	//set.add(1);
+	//set.add(1);
+	//set.add(1);
+	//console.log(set.size); //logs 1
 	//
-	//class Animal{
-	//
-	//  constructor(name){
-	//    this.name = name;
-	//  }
-	//
-	//}
-	//
-	//console.log(new Animal('Prophetic Narwhal'));
-	//
-	//// - the constructor function is called 'constructor'
+	//// - Add the same val, only one is added
 
 
 
@@ -93,23 +88,26 @@ webpackJsonp([0,1],[
 
 
 
-	////CLASSES
+
+
+
+
+
+	//// SET
 	//console.clear();
 	//
-	//// Private-ish Properties
-	//
-	//const monsterHealth = Symbol();
-	//
-	//class Monster{
-	//  constructor(name, health){
-	//    this.name = name;
-	//    this[monsterHealth] = health;
-	//  }
-	//}
-	//
-	//console.log(new Monster('Gozilla', 100));
-	//
-	//// - See the Symbols spec
+	//// Prototype Methods
+	//let set = new Set();
+	//console.log(set.has(1)); //false
+	//set.add(1);
+	//console.log(set.has(1)); //true
+	//set.clear();
+	//console.log(set.has(1)); //false
+	//set.add(1);
+	//set.add(2);
+	//console.log(set.size);   //2
+	//set.delete(2);
+	//console.log(set.size);   //1
 
 
 
@@ -123,27 +121,20 @@ webpackJsonp([0,1],[
 
 
 
-	////CLASSES
+
+
+	//// SET
 	//console.clear();
 	//
-	//// Get Properties
+	//// No Typecasting for uniqueness
+	//let set = new Set();
 	//
-	//const monsterHealth = Symbol();
+	//set.add(1);
+	//console.log(set.has(1));    //true
+	//console.log(set.has("1"));  //false
 	//
-	//class Monster{
-	//  constructor(name, health){
-	//    this.name = name;
-	//    this[monsterHealth] = health;
-	//  }
-	//
-	//  get isAlive(){
-	//    return this[monsterHealth] > 0;
-	//  }
-	//}
-	//
-	//console.log('alive - ',new Monster('Gozilla', 100).isAlive);
-	//
-	//// - properties are not functions
+	//set.add("1");
+	//console.log(set.has("1"));  //true
 
 
 
@@ -153,35 +144,24 @@ webpackJsonp([0,1],[
 
 
 
-	////CLASSES
+
+
+
+
+
+
+
+
+
+	//// SET
 	//console.clear();
 	//
-	//// Property Methods
+	//// Iterate on a set
+	//let items = new Set([1, 2, 3, 4, 5]);
 	//
-	//const monsterHealth = Symbol();
-	//
-	//class Monster{
-	//  constructor(name, health){
-	//    this.name = name;
-	//    this[monsterHealth] = health;
-	//  }
-	//
-	//  get isAlive(){
-	//    return this[monsterHealth] > 0;
-	//  }
-	//  set health(val){
-	//    if(val < 0){
-	//      throw new Error('Health must be positive number');
-	//    }
-	//    this[monsterHealth] = val;
-	//  }
+	//for (let num of items) {
+	//  console.log(num); //logs 1, 2, 3, 4, 5
 	//}
-	//let m = new Monster('Gozilla', 100);
-	//m.health = 1000;
-	//
-	//console.log(m);
-	//
-	//// - properties are not functions
 
 
 
@@ -203,50 +183,15 @@ webpackJsonp([0,1],[
 
 
 
-
-
-
-
-
-
-
-
-
-
-	////CLASSES
+	//// MAP
 	//console.clear();
 	//
-	//// Class Methods
+	//// Basic Map
 	//
-	//const monsterHealth = Symbol();
+	//let map = new Map();
+	//map.set('name', 'Aaron');
 	//
-	//class Monster{
-	//  constructor(name, health){
-	//    this.name = name;
-	//    this[monsterHealth] = health;
-	//  }
-	//
-	//  get isAlive(){
-	//    return this[monsterHealth] > 0;
-	//  }
-	//  set health(val){
-	//    if(val < 0){
-	//      throw new Error('Health must be positive number');
-	//    }
-	//    this[monsterHealth] = val;
-	//  }
-	//
-	//  attack(target){
-	//    console.log(this.name + ' attacks ' + target.name);
-	//  }
-	//}
-	//let m = new Monster('Gozilla', 100);
-	//let g = new Monster('Goku', 200);
-	//
-	//m.attack(g);
-	//
-	//
-	//// - properties are not functions
+	//console.log(map.get('name'));    //Aaron
 
 
 
@@ -268,49 +213,18 @@ webpackJsonp([0,1],[
 
 
 
-
-
-
-
-
-	////CLASSES
+	//// MAP
 	//console.clear();
 	//
-	//// Class Properties
+	//// No Typecasting on Keys
 	//
-	//const monsterHealth = Symbol();
+	//let map = new Map();
 	//
-	//class Monster{
-	//  constructor(name, health){
-	//    this.name = name;
-	//    this[monsterHealth] = health;
-	//    Monster.allMonsters = Monster.allMonsters || [];
-	//    Monster.allMonsters.push(this);
-	//  }
+	//map.set(1, true);
+	//console.log(map.has("1"));       //false
 	//
-	//  get isAlive(){
-	//    return this[monsterHealth] > 0;
-	//  }
-	//  set health(val){
-	//    if(val < 0){
-	//      throw new Error('Health must be positive number');
-	//    }
-	//    this[monsterHealth] = val;
-	//  }
-	//
-	//  attack(target){
-	//    console.log(this.name + ' attacks ' + target.name);
-	//  }
-	//}
-	//
-	//Monster.allMonsters = [];
-	//
-	//let m = new Monster('Gozilla', 100);
-	//let g = new Monster('Goku', 200);
-	//
-	//console.log(Monster.allMonsters);
-	//
-	//// - These are like static properties on a class
+	//map.set("1", true);
+	//console.log(map.has("1"));       //true
 
 
 
@@ -329,55 +243,17 @@ webpackJsonp([0,1],[
 
 
 
-
-
-
-
-	////CLASSES
+	//// MAP
 	//console.clear();
 	//
-	//// EXTENDING CLASSES
-	//const monsterHealth = Symbol();
-	//class Monster{
-	//  constructor(name, health){
-	//    this.name = name;
-	//    this[monsterHealth] = health;
-	//    Monster.allMonsters = Monster.allMonsters || [];
-	//    Monster.allMonsters.push(this);
-	//  }
+	//// Object as a Key
+	//let user = { name: "Aaron", id: 1234 };
 	//
-	//  get isAlive(){
-	//    return this[monsterHealth] > 0;
-	//  }
-	//  set health(val){
-	//    if(val < 0){
-	//      throw new Error('Health must be positive number');
-	//    }
-	//    this[monsterHealth] = val;
-	//  }
+	//let userHobbyMap = new Map();
 	//
-	//  attack(target){
-	//    console.log(this.name + ' attacks ' + target.name);
-	//  }
-	//}
-	//Monster.allMonsters = [];
+	//userHobbyMap.set(user, ['Ice Fishing', 'Family Outting']);
 	//
-	//class Godzilla extends Monster{
-	//  constructor(){
-	//    super('Godzilla', 10000);
-	//  }
-	//  attack(target){
-	//    super(target);
-	//  }
-	//}
-	//
-	//let m = new Godzilla();
-	//let g = new Monster('Goku', 200);
-	//
-	//m.attack(g);
-	//console.log(Monster.allMonsters);
-	//
-	//// - super calls
+	//console.log(userHobbyMap);
 
 
 
@@ -393,26 +269,23 @@ webpackJsonp([0,1],[
 
 
 
-	////CLASSES
+
+
+
+
+	//// MAP
 	//console.clear();
 	//
-	//// EXTENDING CLASSES via Expression
-	//class MySocket extends getClass() {
-	//  //....
-	//}
+	//// Must Use Same Key to Get, identical keys don't work. Must be same reference
+	//let user1 = { name: "Aaron", id: 1234 };
+	//let user2 = { name: "Aaron", id: 1234 };
 	//
-	//function getClass(){
-	//  if(isIE()){
-	//    return IEWebSocketImpl;
-	//  }
-	//  return WebSocket;
+	//let userHobbyMap = new Map();
 	//
-	//  function isIE(){
-	//    return false;
-	//  }
-	//}
-
-	// - The extension reference can be a call
+	//userHobbyMap.set(user1, ['Ice Fishing', 'Family Outting']);
+	//
+	//console.log(userHobbyMap.get(user2)); //undefined
+	//console.log(userHobbyMap.get(user1)); //['Ice Fishing', 'Family Outting']
 
 
 
@@ -423,15 +296,23 @@ webpackJsonp([0,1],[
 
 
 
-	////CLASSES
+
+
+
+
+
+
+
+	//// MAP
 	//console.clear();
 	//
-	//// Classes Do Not Hoist
-	//new Bar(); //runtime error
+	//// Other objects
+	//var elem = document.querySelector('body');
 	//
-	//class Bar{}
+	//var elemMap = new Map();
+	//elemMap.set(elem, {loaded: true, opacity: 0});
 	//
-	//// - Can't use until evaled in order
+	//console.log(elemMap.get(elem));    //logs the element
 
 
 
@@ -452,15 +333,109 @@ webpackJsonp([0,1],[
 
 
 
-
-	////CLASSES
+	//// MAP
 	//console.clear();
 	//
-	//// If No Constructor
-	//constructor(..args){
-	//  super(...args);
-	//}
-	//// - Can't use until evaled in order
+	//// Other objects
+	//var elem = document.querySelector('body');
+	//
+	//var elemMap = new Map();
+	//elemMap.set(elem, {loaded: true, opacity: 0});
+	//
+	//console.log(elemMap.get(elem));    //logs the element
+	//
+	//
+	//// - Why is this bad?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	//// WEAKMAP
+	//console.clear();
+	//
+	//// WeapMap - A lot like a map
+	//let weak = new WeakMap();
+	//let key = {name: "Aaron"};
+	//weak.set(key, 'boring');
+	//console.log(weak.get(key)); //'boring'
+	//
+	//// - Can't enumerate keys, so you can't use primative key
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	//// MAP
+	//console.clear();
+	//
+	//// WeapMap - A lot like a map
+	//let weak = new WeakMap();
+	//let key = {name: "Aaron"};
+	//weak.set(key, 'boring');
+	//console.log(weak.get(key)); //'boring'
+	//
+	//// - Can't enumerate keys, so you can't use primative key
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	//// WEAKMAP
+	//console.clear();
+	//
+	//// WeapMap - weak reference
+	//var elem = document.querySelector('body');
+	//var weak = new WeakMap();
+	//
+	//weak.set(elem, { hidden: false } );
+	//console.log(weak);
+	//
+	//
+	//// - If weakmap is the only thing still pointing to your object
+	//// as a key, weakmap will release the key and value from the map
 
 /***/ }
 ]);
