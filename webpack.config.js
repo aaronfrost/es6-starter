@@ -21,11 +21,11 @@ module.exports = {
   devtool: 'inline-source-map',
 
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin('commons.js'),
-    new webpack.ProvidePlugin({
+    new webpack.optimize.CommonsChunkPlugin('commons.js')
+    , new webpack.ProvidePlugin({
       to5Runtime: 'imports?global=>{}!exports?global.to5Runtime!6to5/runtime'
-    }),
-    new webpack.optimize.UglifyJsPlugin()
+    })
+    //, new webpack.optimize.UglifyJsPlugin()
   ]
 
 };
